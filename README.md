@@ -1,12 +1,21 @@
 # PennTreebankPoSParser
-Transformation script that aggregates all the PoS annotations in the Penn Treebank available on Kaggle.
+Transformation script that aggregates all the PoS annotations in the Penn Treebank available on Kaggle into a single CSV file.
+The main problem here is that the files are extremely difficult to parse "on the fly", as they contain multiple different formats (see section "Disclaimers below").
 
-## Installation
+## Installation/Execution
 Simply clone the GitHub repository with `git clone https://github.com/dennlinger/PennTreebankPoSParser.git`,
 or download the content of the python script.<br/>
+It further assumes that you do have some form of the downloaded Penn Treebank on your system, and know its root folder location, in which there is another subfolder `tagged/`, that contains the respective PoS tag information.<br/>
 To run the script, you can either specify the file locations (and name/location of the output file) within the script,
 or alternatively pass them by calling
 ``` python3 ptbPosParser.py <penn_root_folder> <output_filename> ```
+The result will be an aggregated 
+
+## Options
+The parser allows you two major options:
+
+* The delimiter for the resulting file can be set as a function argument to `appendLine`, and defaults to a whitespace.
+* If enabled, every quotation mark that either follows " or \`\`, will be removed. This can be set as a major argument when calling `parseSingleFile`, and will be handed down to `appendLine` in a similar fashion, as it can make up both a full line, or appear in compounds.
 
 ## Disclaimers
 I don't guarantee 100% correctness. There are some flaws within the dataset that make it particularly difficult to parse.
